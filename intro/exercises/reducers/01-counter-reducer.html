@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>Hello World React</title>
+    <meta charset="utf-8" />
+    <script src="../../babel.min.js"></script>
+    <script src="../../testing.js"></script>
+
+
+    <script type="text/babel">
+
+        // Exercise 01: Basic Counter Reducer
+
+        // Task: write a reducer function that does counter operations on a number
+
+        // This reducer should have a single number as its "state", and respond to five action types:
+        // - "INCREMENT": add one to the number
+        // - "DECREMENT": subtract one from the number
+        // - "ADD" : add the `action.amount` field to the number
+        // - "SUBTRACT": subtract the `action.amount` field from the number
+        // - "SET": return whatever the `action.value` field is
+        // If the current action is none of those, the default case should just return the current state
+
+        // We'll start off easy - just fill in the different cases.
+
+        const initialState = 0;
+
+        function counterReducer(state = initialState, action) {
+            switch(action.type) {
+                case "INCREMENT" : {
+                }
+                case "DECREMENT" : {
+                }
+                case "ADD" : {
+                }
+                case "SUBTRACT" : {
+                }
+                case "SET" : {
+                }
+                default : {
+                    // I'll give this one to you - if we don't recognize the action,
+                    // always return the existing state
+                    return state;
+                }
+            }
+        }
+
+        tests({
+            ["returns the default state for an unknown action"]() {
+                const result = counterReducer(undefined, {type : "MADE_UP_ACTION"});
+                eq(initialState, result);
+            },
+            ["increments correctly"]() {
+                const result = counterReducer(1, {type : "INCREMENT"});
+                eq(2, result);
+            },
+            ["decrements correctly"]() {
+                const result = counterReducer(1, {type : "DECREMENT"});
+                eq(0, result);
+            },
+            ["adds correctly"]() {
+                const result = counterReducer(5, {type : "ADD", amount : 7});
+                eq(12, result);
+            },
+            ["subtracts correctly"]() {
+                const result = counterReducer(10, {type : "SUBTRACT", amount : 4});
+                eq(6, result);
+            },
+            ["sets correctly"]() {
+                const result = counterReducer(0, {type : "SET", value : 10});
+                eq(10, result);
+            }
+
+        })
+
+
+    </script>
+</head>
+<body>
+
+
+<div id="root"></div>
+</body>
+</html>
