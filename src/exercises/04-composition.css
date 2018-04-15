@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+.Person {
+  text-align: center;
+}
+
+.Person .Avatar {
+  display: block;
+  margin: 0 auto 15px;
+}
+
+.Person b {
+  display: block;
+  font-size: 18px;
+}
+.Person em {
+  display: block;
+}
+.Person ul {
+  margin: 10px 0 0;
+  padding: 0;
+}
+.Person li {
+  display: inline-block;
+}
+
+.Icon {
+  background: #fff;
+  border-radius: 21px;
+  color: #777;
+  display: inline-block;
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding-top: 5px;
+}
+.Icon:hover {
+  background: #36c;
+  color: #fff;
+}

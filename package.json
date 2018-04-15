@@ -1,0 +1,64 @@
+{
+  "name": "react-workshop",
+  "version": "0.1.0",
+  "homepage": "https://react-workshop.netlify.com/",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.9.7",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router-dom": "^4.2.2",
+    "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "axios": "^0.16.2",
+    "chalk": "^2.1.0",
+    "cpy-cli": "^1.0.1",
+    "cross-env": "^5.0.5",
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "enzyme-to-json": "^3.0.0",
+    "kcd-scripts": "^0.23.3",
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.1",
+    "react-router": "^4.2.0",
+    "react-scripts": "^1.0.14",
+    "react-test-renderer": "^16.0.0",
+    "split-guide": "^3.0.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "jsx-a11y/href-no-hash": "off"
+    }
+  },
+  "scripts": {
+    "add-contributor": "kcd-scripts contributors add",
+    "lint": "kcd-scripts lint",
+    "develop": "npm run -s watch:split:src",
+    "watch:split:src":
+      "nodemon --watch ./src/workshop-templates --exec \"npm run split:src\"",
+    "watch:split:intro":
+      "nodemon --watch ./intro/workshop-templates --exec \"npm run split:intro\"",
+    "split": "npm-run-all --parallel split:*",
+    "split:src":
+      "split-guide generate --templatesDir other/src-templates --exercisesDir src/exercises --exercisesFinalDir src/exercises-final",
+    "split:intro":
+      "split-guide generate --templatesDir other/intro-templates --exercisesDir intro/exercises --exercisesFinalDir intro/exercises-final",
+    "test": "kcd-scripts test",
+    "test:final": "cross-env TEST_DIR=exercises-final kcd-scripts test",
+    "start": "react-scripts start",
+    "build": "npm-run-all build:*",
+    "build:app": "react-scripts build",
+    "build:intro": "cpy \"intro/**/*.*\" build --parents",
+    "setup":
+      "node ./scripts/verify && node ./scripts/install && npm run validate -s",
+    "format": "kcd-scripts format \"**/*.js\"",
+    "precommit":
+      "npm run split && npm run format && git add . && npm run validate",
+    "validate": "cross-env TEST_DIR=exercises-final kcd-scripts validate"
+  }
+}

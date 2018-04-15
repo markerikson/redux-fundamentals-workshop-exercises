@@ -1,0 +1,21 @@
+<title>Hello World React</title>
+<meta charset="utf-8" />
+<script src="../babel.min.js"></script>
+<script src="../react.min.js"></script>
+<script src="../react-dom.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+function tick() {
+  function App() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      </div>
+    )
+  }
+  ReactDOM.render(<App />, document.getElementById('root'))
+}
+tick()
+setInterval(tick, 1000)
+</script>

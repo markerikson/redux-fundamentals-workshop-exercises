@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the form properly 1`] = `
+<form>
+  <label>
+    Name:
+    <input
+      type="text"
+    />
+  </label>
+  <input
+    type="submit"
+    value="Submit"
+  />
+</form>
+`;

@@ -1,0 +1,13 @@
+<title>Hello World React</title>
+<meta charset="utf-8" />
+<script src="../babel.min.js"></script>
+<script src="../react.min.js"></script>
+<script src="../react-dom.min.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+ReactDOM.render(<SayHello />, document.getElementById('root'))
+
+function SayHello() {
+  return <div>Hello World</div>
+}
+</script>
