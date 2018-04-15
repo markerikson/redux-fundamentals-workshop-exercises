@@ -3,6 +3,7 @@
 <script src="../react-dom.min.js"></script>
 <div id="root"></div>
 <script type="text/javascript">
+// WORKSHOP_START
 // Use ReactDOM.render and React.createElement to create and render
 // <div>Hello World</div> to #root
 //
@@ -20,4 +21,38 @@
 //
 // Tips:
 // - You can get the container with `document.getElementById('root')`
+// WORKSHOP_END
+// FINAL_START
+/*
+// Let's implement this ourselves...
+
+function render(elementToRender, parentToRenderTo) {
+  parentToRenderTo.appendChild(elementToRender)
+}
+
+function createElement(type, attributes, ...children) {
+  const el = document.createElement(type)
+  Object.keys(attributes || {}).forEach(key => {
+    el.setAttribute(key, attributes[key])
+  })
+  children.forEach(child => {
+    if (typeof child === 'string') {
+      render(document.createTextNode(child), el)
+    } else {
+      render(child, el)
+    }
+  })
+  return el
+}
+
+render(
+  createElement('div', null, 'Hello World'),
+  document.getElementById('root')
+)
+ */
+ReactDOM.render(
+  React.createElement('div', null, 'Hello World'),
+  document.getElementById('root')
+)
+// FINAL_END
 </script>

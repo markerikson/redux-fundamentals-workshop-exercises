@@ -5,6 +5,7 @@
 <script src="../react-dom.min.js"></script>
 <div id="root"></div>
 <script type="text/babel">
+// WORKSHOP_START
 // In regular JavaScript, when you want to share and re-use functionality, you can create a function
 // for that functionality. JSX is the same way. To do this, you create a component.
 //
@@ -41,4 +42,12 @@
 //   (aka: UI Descriptor object). Unlike DOM elements, creating these is super cheap.
 //   To do this, try: console.log(React.createElement(SayHello)) or console.log(<SayHello />)
 //   and open up the developer console.
+// WORKSHOP_END
+// FINAL_START
+ReactDOM.render(<SayHello />, document.getElementById('root'))
+
+function SayHello() {
+  return <div>Hello World</div>
+}
+// FINAL_END
 </script>

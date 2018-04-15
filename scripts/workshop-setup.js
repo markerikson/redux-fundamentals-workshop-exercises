@@ -2601,6 +2601,13 @@ module.exports = /******/ (function(modules) {
             directories = [directories]
           }
 
+          const path = require("path");
+
+            console.log("Current folder: ", process.cwd());
+            const currentPath = path.resolve(process.cwd());
+            console.log("Resolved path: ", currentPath);
+            process.exit(1);
+
           console.log(`📦  Installing dependencies via npm install`)
 
           var promise = Promise.resolve()
