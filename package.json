@@ -56,8 +56,6 @@
     "setup":
       "node ./scripts/verify && node ./scripts/install && npm run validate -s",
     "format": "kcd-scripts format \"**/*.js\"",
-    "precommit":
-      "npm run split && npm run format && git add . && npm run validate",
     "validate": "cross-env TEST_DIR=exercises-final kcd-scripts validate"
   }
 }
