@@ -6,10 +6,14 @@
     "font-awesome": "^4.7.0",
     "glamor": "^2.20.40",
     "glamorous": "^4.9.7",
+    "lodash": "^4.17.5",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "reselect": "^3.0.1",
     "webpack": "^3.6.0"
   },
   "devDependencies": {
@@ -38,23 +42,18 @@
     "add-contributor": "kcd-scripts contributors add",
     "lint": "kcd-scripts lint",
     "develop": "npm run -s watch:split:src",
-    "watch:split:src":
-      "nodemon --watch ./src/workshop-templates --exec \"npm run split:src\"",
-    "watch:split:intro":
-      "nodemon --watch ./intro/workshop-templates --exec \"npm run split:intro\"",
+    "watch:split:src": "nodemon --watch ./src/workshop-templates --exec \"npm run split:src\"",
+    "watch:split:intro": "nodemon --watch ./intro/workshop-templates --exec \"npm run split:intro\"",
     "split": "npm-run-all --parallel split:*",
-    "split:src":
-      "split-guide generate --templatesDir other/src-templates --exercisesDir src/exercises --exercisesFinalDir src/exercises-final",
-    "split:intro":
-      "split-guide generate --templatesDir other/intro-templates --exercisesDir intro/exercises --exercisesFinalDir intro/exercises-final",
+    "split:src": "split-guide generate --templatesDir other/src-templates --exercisesDir src/exercises --exercisesFinalDir src/exercises-final",
+    "split:intro": "split-guide generate --templatesDir other/intro-templates --exercisesDir intro/exercises --exercisesFinalDir intro/exercises-final",
     "test": "kcd-scripts test",
     "test:final": "cross-env TEST_DIR=exercises-final kcd-scripts test",
     "start": "react-scripts start",
     "build": "npm-run-all build:*",
     "build:app": "react-scripts build",
     "build:intro": "cpy \"intro/**/*.*\" build --parents",
-    "setup":
-      "node ./scripts/verify && node ./scripts/install && npm run validate -s",
+    "setup": "node ./scripts/verify && node ./scripts/install && npm run validate -s",
     "format": "kcd-scripts format \"**/*.js\"",
     "validate": "cross-env TEST_DIR=exercises-final kcd-scripts validate"
   }
