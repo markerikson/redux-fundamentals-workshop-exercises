@@ -24,9 +24,8 @@ function logger(logger) {
     function addLoggerTag() {
         //const body = document.getElementsByTagName("body")[0];
         //body.appendChild(pre);
-        const root = document.getElementById("root");
+        const root = document.getElementById("output");
         root.appendChild(pre);
-        console.log("Pre appended");
     }
     if(document.readyState) {
         addLoggerTag();

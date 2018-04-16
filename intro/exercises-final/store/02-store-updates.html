@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>Exercise 02: Dispatching and updates</title>
+    <meta charset="utf-8" />
+    <script src="../../babel.min.js"></script>
+    <script src="../../redux.min.js"></script>
+    <script src="../../testing.js"></script>
+
+</head>
+<body>
+
+
+<div id="root">
+    <div>Current text: <span id="currentTextDisplay"></span></div>
+    <br />
+    <div>
+        <input type="text" id="textInput" />
+        <button id="setText">Set Current Text</button>
+    </div>
+</div>
+<div id="output"></div>
+
+<script type="text/babel">
+
+    // Exercise 02: Dispatching and updates
+
+    // Task: A store has been created, with a simple reducer that stores a current text value.
+
+    // We've got three reducer functions already written: usersReducer, commentsReducer, and currentUserReducer.
+    // Use combineReducers to create a variable called `rootReducer` that combines them together.
+    // The final state from the root reducer should look like:
+    // {users : [], comments : {}, currentUser : null}
+
+    // Once you've got the root reducer created, call `createStore` and create a variable called `store`, passing
+    // in the root reducer and the `storeInitialState` value.
+
+    // Redux is available as a global variable, so we can get combineReducers and createStore from it:
+
+    const {combineReducers, createStore} = Redux;
+
+
+    function currentTextReducer(state = "", action) {
+        switch(action.type) {
+            case "SET_TEXT" : return action.text;
+            default : return state;
+        }
+    }
+
+    const rootReducer = combineReducers({
+        currentText : currentTextReducer
+    });
+
+    const store = createStore(rootReducer);
+
+    const textInput = document.getElementById("textInput");
+    const setTextButton = document.getElementById("setText");
+    const currentTextDisplay = document.getElementById("currentTextDisplay")
+
+
+    setTextButton.addEventListener("click", () => {
+        const text = textInput.value;
+
+        store.dispatch({type : "SET_TEXT", text});
+    });
+
+
+    store.subscribe( () => {
+        const state = store.getState();
+        currentTextDisplay.innerText = state.currentText;
+    });
+
+    tests({
+        ["Should dispatch and update the text when the button is clicked"]() {
+            const originalText = textInput.value;
+            const newText = "Test text";
+            textInput.value = newText;
+
+            setTextButton.click();
+            textInput.value = originalText;
+
+            const state = store.getState();
+            eq(state.currentText, newText);
+
+        },
+        ["Should set the display text from the updated state"]() {
+            const newText = "More test text";
+            store.dispatch({type : "SET_TEXT", text : newText});
+
+            const displayText = currentTextDisplay.innerText;
+
+            eq("More test text", newText);
+        },
+    })
+
+
+</script>
+</body>
+</html>

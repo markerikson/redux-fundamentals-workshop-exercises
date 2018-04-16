@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>Exercise 01: Using combineReducers</title>
+    <meta charset="utf-8" />
+    <script src="../../babel.min.js"></script>
+    <script src="../../redux.min.js"></script>
+    <script src="../../testing.js"></script>
+
+
+    <script type="text/babel">
+
+        // Exercise 01: Using combineReducers and createStore
+
+        // Task: use combineReducers to create a root reducer with the right state slice names.  Then,
+        //       create a Redux store using that root reducer and the provided initial state.
+
+        // We've got three reducer functions already written: usersReducer, commentsReducer, and currentUserReducer.
+        // Use combineReducers to create a variable called `rootReducer` that combines them together.
+        // The final state from the root reducer should look like:
+        // {users : [], comments : {}, currentUser : null}
+
+        // Once you've got the root reducer created, call `createStore` and create a variable called `store`, passing
+        // in the root reducer and the `storeInitialState` value.
+
+        // Redux is available as a global variable, so we can get combineReducers and createStore from it:
+        const {combineReducers, createStore} = Redux;
+
+
+        function usersReducer(state = [], action) {
+            return state;
+        }
+
+        function commentsReducer(state = {}, action) {
+            return state;
+        }
+
+        function currentUserReducer(state = null, action) {
+            return state;
+        }
+
+        const storeInitialState = {
+            users : [{username : "bkenobi"}, {username : "lskywalker"}],
+            comments : {1 : "First comment", 2 : "second comment", 3 : "third comment"},
+            currentUser : null,
+        };
+
+        // TODO Create the root reducer and store here:
+
+
+        // FINAL_START
+        const rootReducer = combineReducers({
+            users : usersReducer,
+            comments : commentsReducer,
+            currentUser : currentUserReducer,
+        });
+
+        const store = createStore(rootReducer, storeInitialState);
+        // FINAL_END
+
+        tests({
+            ["rootReducer should be a function"]() {
+                eq(typeof rootReducer, "function");
+            },
+            ["root reducer state result should have the correct shape"]() {
+                const resultState = rootReducer(undefined, {type : "DUMMY_ACTION"});
+
+                assert(resultState !== storeInitialState, "Result state shouldn't be the same as the store initial state");
+                assert(Array.isArray(resultState.users), "state.users should be an array");
+                assert(typeof resultState.comments === "object", "state.comments should be an object");
+                assert(resultState.currentUser === null, "state.currentUser should have an initial value of null");
+            },
+            ["store should be an object"]() {
+                eq(typeof store, "object");
+            },
+            ["store state result should have the correct shape and initial values"]() {
+                const resultState = store.getState();
+
+                assert(resultState === storeInitialState, "Result state should be the same as the store initial state");
+                assert(Array.isArray(resultState.users), "state.users should be an array");
+                assert(typeof resultState.comments === "object", "state.comments should be an object");
+                assert(resultState.currentUser === null, "state.currentUser should have an initial value of null");
+
+                assert(resultState.users.length === 2, "Initial state should have 2 users");
+                assert(Object.keys(resultState.comments).length === 3, "Initial state should have 3 comments");
+            },
+        })
+
+
+    </script>
+</head>
+<body>
+
+
+<div id="root"></div>
+<div id="output"></div>
+</body>
+</html>
