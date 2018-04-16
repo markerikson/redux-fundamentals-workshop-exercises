@@ -64,7 +64,10 @@ const TinyTest = {
                 //console.error('Test:', testName, 'FAILED', e);
                 //console.error(e.stack);
                 error('Test:', testName, 'FAILED', e);
-                error(e.stack);
+                const splitLines = e.stack.split("\n");
+                const filteredLines = splitLines.filter(line => !line.includes("babel.min.js") && !line.includes("testing.js"));
+                const newStack = filteredLines.join("\n");
+                error(newStack);
             }
         }
         setTimeout(function() { // Give document a chance to complete
