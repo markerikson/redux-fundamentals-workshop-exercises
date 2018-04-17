@@ -4,11 +4,13 @@ import {Route, Link} from 'react-router-dom'
 import {Example as UIIntegration} from "./02-ui-integration";
 import {Example as ReactRedux} from "./03-react-redux";
 import {Example as Middleware} from "./04-middleware-enhancers";
+import {Example as SideEffects} from "./05-side-effects";
 
 const exercises = [
     {title : "UI Integration", component : UIIntegration},
     {title : "React-Redux", component : ReactRedux},
-    {title : "Middleware", component : Middleware}
+    {title : "Middleware", component : Middleware},
+    {title : "Side Effects", component : SideEffects}
 ].map(e => ({
   ...e,
   slug: e.title
