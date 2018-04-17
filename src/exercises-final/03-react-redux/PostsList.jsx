@@ -1,27 +1,17 @@
 import React, {Component} from "react";
 
-import store from "./store";
+import {connect} from "react-redux";
 
-export default class PostsList extends Component {
-    constructor(props) {
-        super(props);
+const mapState = (state) => {
+    return {
+        posts : state.posts,
+        authors : state.authors,
+    };
+}
 
-        this.state = {
-            posts : store.getState().posts,
-            authors : store.getState().authors,
-        };
-
-
-        store.subscribe(this.onStoreUpdated);
-    }
-
-    onStoreUpdated = () => {
-        const {posts, authors} = store.getState();
-        this.setState({posts, authors});
-    }
-
+export class PostsList extends Component {
     render() {
-        const {posts, authors} = this.state;
+        const {posts = [], authors = []} = this.props;
 
         const renderedPosts = posts.map(post => {
             const author = authors.find(author => author.authorId === post.authorId) || {name : "Unknown"};
@@ -40,3 +30,6 @@ export default class PostsList extends Component {
         );
     }
 }
+
+
+export default connect(mapState)(PostsList);

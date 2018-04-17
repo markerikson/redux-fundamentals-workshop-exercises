@@ -10,14 +10,14 @@ export default class NewPostForm extends Component {
 
         this.state = {
             title : "",
-            selectedUser : null,
-            users : store.getState().users,
+            selectedAuthor : null,
+            authors : store.getState().authors,
         };
     }
 
-    onSelectedUserChanged = (e) => {
+    onSelectedAuthorChanged = (e) => {
         const {value} = e.target;
-        this.setState({selectedUser : value || null})
+        this.setState({selectedAuthor : value || null})
     }
 
     onPostTitleChanged = (e) => {
@@ -26,27 +26,28 @@ export default class NewPostForm extends Component {
     }
 
     onAddNewPostClicked = () => {
-        const {title, selectedUser} = this.state;
 
-        if(selectedUser !== null && title !== "") {
-            store.dispatch(addNewPost(selectedUser, title));
+        const {title, selectedAuthor} = this.state;
+
+        if(selectedAuthor !== null && title !== "") {
+            store.dispatch(addNewPost(selectedAuthor, title));
             this.setState({title : ""});
         }
     }
 
     render() {
-        const {title, selectedUser, users} = this.state;
+        const {title, selectedAuthor, authors} = this.state;
 
 
-        const usersOptions = users.map(user => <option key={user.username} value={user.username}>{user.name}</option>);
+        const authorsOptions = authors.map(author => <option key={author.authorId} value={author.authorId}>{author.name}</option>);
         // Add an empty selection option
-        usersOptions.unshift(<option key="empty" value="" />);
+        authorsOptions.unshift(<option key="empty" value="" />);
 
         return (
             <div>
                 <h4>New Post</h4>
                 <input type="text" onChange={this.onPostTitleChanged} value={title} />
-                <div>Author: <select value={selectedUser || ''} onChange={this.onSelectedUserChanged}>{usersOptions}</select></div>
+                <div>Author: <select value={selectedAuthor || ''} onChange={this.onSelectedAuthorChanged}>{authorsOptions}</select></div>
                 <div><button onClick={this.onAddNewPostClicked}>Add New Post</button></div>
             </div>
         )

@@ -1,20 +1,18 @@
 import React, {Component} from "react";
-
-import store from "./store";
 import {addNewPost} from "./actions";
 
+// TODO Import `connect()`, write a `mapState()` function that extracts the
+// TODO data this component needs, and default-export the connected component.
+// TODO Be sure to hook up `addNewPost()` so the component can dispatch the action.
 
-export default class NewPostForm extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            title : "",
-            selectedAuthor : null,
-            // TODO Get the authors lists from the store instead
-            authors : [],
-        };
-    }
+
+
+export class NewPostForm extends Component {
+    state = {
+        title : "",
+        selectedAuthor : null,
+    };
 
     onSelectedAuthorChanged = (e) => {
         const {value} = e.target;
@@ -31,14 +29,14 @@ export default class NewPostForm extends Component {
         // TODO using the `addNewPost()` action creator.  Afterwards, clear the post title field by
         // TODO setting it to an empty string.
 
-        // TODO Bonus: only dispatch if there's the selected author isn't null, and
+        // TODO Bonus: only dispatch if there's the selected author  isn't null, and
         // TODO the current post title isn't an empty string
 
     }
 
     render() {
-        const {title, selectedAuthor, authors} = this.state;
-
+        const {title = "", selectedAuthor = null} = this.state;
+        const {authors = []} = this.props;
 
         const authorsOptions = authors.map(author => <option key={author.authorId} value={author.authorId}>{author.name}</option>);
         // Add an empty selection option
@@ -54,3 +52,6 @@ export default class NewPostForm extends Component {
         )
     }
 }
+
+export default NewPostForm;
+

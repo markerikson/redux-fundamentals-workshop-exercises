@@ -2,9 +2,11 @@ import React from 'react'
 import {Route, Link} from 'react-router-dom'
 
 import {Example as UIIntegration} from "./02-ui-integration";
+import {Example as ReactRedux} from "./03-react-redux";
 
 const exercises = [
-    {title : "UI Integration", component : UIIntegration}
+    {title : "UI Integration", component : UIIntegration},
+    {title : "React-Redux", component : ReactRedux},
 ].map(e => ({
   ...e,
   slug: e.title

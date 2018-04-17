@@ -9,7 +9,7 @@ export default class PostsList extends Component {
         this.state = {
             // TODO Get the posts and users lists from the store instead
             posts : [],
-            users : [],
+            authors : [],
         };
 
 
@@ -21,11 +21,11 @@ export default class PostsList extends Component {
     }
 
     render() {
-        const {posts, users} = this.state;
+        const {posts, authors} = this.state;
 
         const renderedPosts = posts.map(post => {
-            const user = users.find(user => user.username === post.username) || {name : "Unknown"};
-            const {name} = user;
+            const author = authors.find(author => author.authorId === post.authorId) || {name : "Unknown"};
+            const {name} = author;
 
             return <li key={post.id }>{post.title}, by {name}</li>;
         });

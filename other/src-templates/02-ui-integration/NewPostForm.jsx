@@ -10,20 +10,20 @@ export default class NewPostForm extends Component {
 
         this.state = {
             title : "",
-            selectedUser : null,
+            selectedAuthor : null,
             // WORKSHOP_START
-            // TODO Get the users lists from the store instead
-            users : [],
+            // TODO Get the authors lists from the store instead
+            authors : [],
             // WORKSHOP_END
             // FINAL_START
-            users : store.getState().users,
+            authors : store.getState().authors,
             // FINAL_END
         };
     }
 
-    onSelectedUserChanged = (e) => {
+    onSelectedAuthorChanged = (e) => {
         const {value} = e.target;
-        this.setState({selectedUser : value || null})
+        this.setState({selectedAuthor : value || null})
     }
 
     onPostTitleChanged = (e) => {
@@ -33,36 +33,37 @@ export default class NewPostForm extends Component {
 
     onAddNewPostClicked = () => {
         // WORKSHOP_START
-        // TODO Dispatch an action with the title and the selected username,
+        // TODO Dispatch an action with the title and the selected author ID,
         // TODO using the `addNewPost()` action creator.  Afterwards, clear the post title field by
         // TODO setting it to an empty string.
 
-        // TODO Bonus: only dispatch if there's the selected user isn't null, and
+        // TODO Bonus: only dispatch if there's the selected author isn't null, and
         // TODO the current post title isn't an empty string
-        // WORKSHOP_END`
-        // FINAL_START
-        const {title, selectedUser} = this.state;
+        // WORKSHOP_END
 
-        if(selectedUser !== null && title !== "") {
-            store.dispatch(addNewPost(selectedUser, title));
+        // FINAL_START
+        const {title, selectedAuthor} = this.state;
+
+        if(selectedAuthor !== null && title !== "") {
+            store.dispatch(addNewPost(selectedAuthor, title));
             this.setState({title : ""});
         }
         // FINAL_END
     }
 
     render() {
-        const {title, selectedUser, users} = this.state;
+        const {title, selectedAuthor, authors} = this.state;
 
 
-        const usersOptions = users.map(user => <option key={user.username} value={user.username}>{user.name}</option>);
+        const authorsOptions = authors.map(author => <option key={author.authorId} value={author.authorId}>{author.name}</option>);
         // Add an empty selection option
-        usersOptions.unshift(<option key="empty" value="" />);
+        authorsOptions.unshift(<option key="empty" value="" />);
 
         return (
             <div>
                 <h4>New Post</h4>
                 <input type="text" onChange={this.onPostTitleChanged} value={title} />
-                <div>Author: <select value={selectedUser || ''} onChange={this.onSelectedUserChanged}>{usersOptions}</select></div>
+                <div>Author: <select value={selectedAuthor || ''} onChange={this.onSelectedAuthorChanged}>{authorsOptions}</select></div>
                 <div><button onClick={this.onAddNewPostClicked}>Add New Post</button></div>
             </div>
         )

@@ -1,20 +1,24 @@
 import React, {Component} from "react";
-
-import store from "./store";
 import {addNewPost} from "./actions";
 
 
-export default class NewPostForm extends Component {
-    constructor(props) {
-        super(props);
+import {connect} from "react-redux";
 
-        this.state = {
-            title : "",
-            selectedAuthor : null,
-            // TODO Get the authors lists from the store instead
-            authors : [],
-        };
-    }
+const mapState = (state) => {
+    return {
+        authors : state.authors,
+    };
+}
+
+const actions = {addNewPost};
+
+
+
+export class NewPostForm extends Component {
+    state = {
+        title : "",
+        selectedAuthor : null,
+    };
 
     onSelectedAuthorChanged = (e) => {
         const {value} = e.target;
@@ -27,18 +31,18 @@ export default class NewPostForm extends Component {
     }
 
     onAddNewPostClicked = () => {
-        // TODO Dispatch an action with the title and the selected author ID,
-        // TODO using the `addNewPost()` action creator.  Afterwards, clear the post title field by
-        // TODO setting it to an empty string.
 
-        // TODO Bonus: only dispatch if there's the selected author isn't null, and
-        // TODO the current post title isn't an empty string
+        const {title, selectedAuthor} = this.state;
 
+        if(selectedAuthor !== null && title !== "") {
+            this.props.addNewPost(selectedAuthor, title);
+            this.setState({title : ""});
+        }
     }
 
     render() {
-        const {title, selectedAuthor, authors} = this.state;
-
+        const {title = "", selectedAuthor = null} = this.state;
+        const {authors = []} = this.props;
 
         const authorsOptions = authors.map(author => <option key={author.authorId} value={author.authorId}>{author.name}</option>);
         // Add an empty selection option
@@ -54,3 +58,6 @@ export default class NewPostForm extends Component {
         )
     }
 }
+
+
+export default connect(mapState, actions)(NewPostForm);

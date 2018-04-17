@@ -3,14 +3,14 @@ import {combineReducers} from "redux";
 function postsReducer(state = [], action) {
     switch(action.type) {
         case "ADD_NEW_POST" : {
-            const {username, title, id} = action;
-            return state.concat({id, username, title, comments : []});
+            const {authorId, title, id} = action;
+            return state.concat({id, authorId, title, comments : []});
         }
         default : return state;
     }
 }
 
-function usersReducer(state = [], action) {
+function authorsReducer(state = [], action) {
     switch(action.type) {
         default: return state;
     }
@@ -18,6 +18,6 @@ function usersReducer(state = [], action) {
 
 export default combineReducers({
     posts : postsReducer,
-    users : usersReducer,
+    authors : authorsReducer,
 });
 

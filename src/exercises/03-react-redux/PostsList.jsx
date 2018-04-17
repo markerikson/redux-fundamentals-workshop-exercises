@@ -1,28 +1,14 @@
 import React, {Component} from "react";
-
-import store from "./store";
-
-export default class PostsList extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            posts : store.getState().posts,
-            authors : store.getState().authors,
-        };
+// TODO Import `connect()`, write a `mapState()` function that extracts the
+// TODO data this component needs, and default-export the connected component.
 
 
-        store.subscribe(this.onStoreUpdated);
-    }
-
-    onStoreUpdated = () => {
-        const {posts, authors} = store.getState();
-        this.setState({posts, authors});
-    }
-
+export class PostsList extends Component {
     render() {
-        const {posts, authors} = this.state;
+        const {posts = [], authors = []} = this.props;
 
+        // TODO Bonus: convert the list items into a separate `<PostListItem> component, and connect it.
+        // TODO        Be sure to pass the post ID as a prop, and access it using `ownProps` in `mapState`.
         const renderedPosts = posts.map(post => {
             const author = authors.find(author => author.authorId === post.authorId) || {name : "Unknown"};
             const {name} = author;
@@ -40,3 +26,6 @@ export default class PostsList extends Component {
         );
     }
 }
+
+
+export default PostsList;

@@ -3,14 +3,14 @@ import {createStore} from "redux";
 import rootReducer from "./rootReducer";
 
 const initialState = {
-    users : [
-        {username : "bkenobi", name : "Obi-Wan Kenobi"},
-        {username : "lskywalker", name : "Luke Skywalker"}
+    authors : [
+        {authorId : "bkenobi", name : "Obi-Wan Kenobi"},
+        {authorId : "lskywalker", name : "Luke Skywalker"}
     ],
     posts : [
-        {id : _.uniqueId("post"), username : "bkenobi", title : "How to Train Your Krayt Dragon"},
-        {id : _.uniqueId("post"), username : "lskywalker", title : "101 Ways to Skin a Taun-Taun"},
-        {id : _.uniqueId("post"), username : "bkenobi", title : "Do Force Ghosts Exist?"},
+        {id : _.uniqueId("post"), authorId : "bkenobi", title : "How to Train Your Krayt Dragon"},
+        {id : _.uniqueId("post"), authorId : "lskywalker", title : "101 Ways to Skin a Taun-Taun"},
+        {id : _.uniqueId("post"), authorId : "bkenobi", title : "Do Force Ghosts Exist?"},
     ]
 }
 
