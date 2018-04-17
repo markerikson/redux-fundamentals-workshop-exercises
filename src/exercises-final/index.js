@@ -1,11 +1,9 @@
 import React from 'react'
 import {Route, Link} from 'react-router-dom'
 
-import {Example as Props} from './01-props'
 import {Example as UIIntegration} from "./02-ui-integration";
 
 const exercises = [
-  {title: 'Props', component: Props},
     {title : "UI Integration", component : UIIntegration}
 ].map(e => ({
   ...e,
