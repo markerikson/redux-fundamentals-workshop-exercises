@@ -3,127 +3,129 @@
     <title>Exercise 01: Object Reducer</title>
     <meta charset="utf-8" />
     <script src="../../babel.min.js"></script>
-    <script src="../../testing.js"></script>
 
-
-    <script type="text/babel">
-        "use strict";
-
-        // Task: write a reducer function that updates the right fields in an object describing a Jedi Knight.
-
-        // Remember: if you're making updates, ALWAYS return a new object!
-
-        // This reducer should respond to these actions:
-
-        // - "SET_CURRENT_JEDI": should just return the object that's in `action.payload`
-        // - "SET_JOB": should  overwrite the current `state.job` field with the value from `action.job`
-        // - "FINISH_TRAINING" : should update the `state.job` field to be "Jedi Knight", and update the `state.weapons`
-        //                       field to include a `lightsaber` field with a value of "blue"
-        // - "JOIN_DARK_SIDE": should update `job` to be "Sith", `side` to be "Dark", and update the `state.weapons`
-        //                     field to include a `lightsaber` field with a value of "red"
-
-        // If the current action is none of those, the default case should just return the current state
-
-
-        const initialState = {
-            firstName : "Luke",
-            lastName : "Skywalker",
-            job : "moisture farmer",
-            side : "light",
-            weapons: {
-                blaster : "DL-42"
-            }
-        };
-        deepFreeze(initialState);
-
-        function jediReducer(state = initialState, action) {
-            switch(action.type) {
-                case "SET_CURRENT_JEDI" : {
-                    return action.payload;
-                }
-                case "SET_JOB" : {
-                    return {
-                        ...state,
-                        job : action.job
-                    };
-                }
-                case "FINISH_TRAINING" : {
-                    return {
-                        ...state,
-                        job : "Jedi Knight",
-                        weapons : {
-                            ...state.weapons,
-                            lightsaber : "blue"
-                        }
-                    };
-                }
-                case "JOIN_DARK_SIDE" : {
-                    return {
-                        ...state,
-                        side : "dark",
-                        job : "Sith",
-                        weapons : {
-                            ...state.weapons,
-                            lightsaber : "red"
-                        }
-                    };
-                }
-
-                default : {
-                    // Always return the existing state
-                    return state;
-                }
-            }
-        }
-
-        tests({
-            ["sets the current Jedi"]() {
-                const newJedi = deepFreeze({firstName : "Obi-Wan", lastName : "Kenobi"});
-                const result = jediReducer(undefined, {type : "SET_CURRENT_JEDI", payload : newJedi});
-
-                assertStrictEquals(result, newJedi);
-            },
-            ["updates the job"]() {
-                const action = {type : "SET_JOB", job : "Nerf herder"};
-                const result = jediReducer(initialState, action);
-
-                eq(result.job, "Nerf herder");
-            },
-            ["can become a Jedi Knight"]() {
-                const action = {type : "FINISH_TRAINING"};
-                const result = jediReducer(initialState, action);
-
-                eq("Jedi Knight", result.job);
-                eq("blue", result.weapons.lightsaber);
-                assert(initialState !== result, "Must return a new object for the state");
-                assert(initialState.weapons !== result.weapons, "Must return a new object for the weapons");
-            },
-            ["can join the Dark Side"]() {
-                const action = {type : "JOIN_DARK_SIDE"};
-                const state = deepFreeze({
-                    firstName : "Anakin",
-                    lastName : "Skywalker",
-                    job : "pod racer",
-                    weapons : {
-                        starfighter : "Naboo"
-                    }
-                });
-                const result = jediReducer(initialState, action);
-
-                eq("Sith", result.job);
-                eq("red", result.weapons.lightsaber);
-                assert(initialState !== result, "Must return a new object for the state");
-                assert(initialState.weapons !== result.weapons, "Must return a new object for the weapons");
-            },
-        })
-
-
-    </script>
 </head>
 <body>
 
 
 <div id="root"></div>
 <div id="output"></div>
+
+<script src="../../testing.js"></script>
+
+
+<script type="text/javascript">
+    "use strict";
+
+    // Task: write a reducer function that updates the right fields in an object describing a Jedi Knight.
+
+    // Remember: if you're making updates, ALWAYS return a new object!
+
+    // This reducer should respond to these actions:
+
+    // - "SET_CURRENT_JEDI": should just return the object that's in `action.payload`
+    // - "SET_JOB": should  overwrite the current `state.job` field with the value from `action.job`
+    // - "FINISH_TRAINING" : should update the `state.job` field to be "Jedi Knight", and update the `state.weapons`
+    //                       field to include a `lightsaber` field with a value of "blue"
+    // - "JOIN_DARK_SIDE": should update `job` to be "Sith", `side` to be "Dark", and update the `state.weapons`
+    //                     field to include a `lightsaber` field with a value of "red"
+
+    // If the current action is none of those, the default case should just return the current state
+
+
+    const initialState = {
+        firstName : "Luke",
+        lastName : "Skywalker",
+        job : "moisture farmer",
+        side : "light",
+        weapons: {
+            blaster : "DL-42"
+        }
+    };
+    deepFreeze(initialState);
+
+    function jediReducer(state = initialState, action) {
+        switch(action.type) {
+            case "SET_CURRENT_JEDI" : {
+                return action.payload;
+            }
+            case "SET_JOB" : {
+                return {
+                    ...state,
+                    job : action.job
+                };
+            }
+            case "FINISH_TRAINING" : {
+                return {
+                    ...state,
+                    job : "Jedi Knight",
+                    weapons : {
+                        ...state.weapons,
+                        lightsaber : "blue"
+                    }
+                };
+            }
+            case "JOIN_DARK_SIDE" : {
+                return {
+                    ...state,
+                    side : "dark",
+                    job : "Sith",
+                    weapons : {
+                        ...state.weapons,
+                        lightsaber : "red"
+                    }
+                };
+            }
+
+            default : {
+                // Always return the existing state
+                return state;
+            }
+        }
+    }
+
+    tests({
+        ["sets the current Jedi"]() {
+            const newJedi = deepFreeze({firstName : "Obi-Wan", lastName : "Kenobi"});
+            const result = jediReducer(undefined, {type : "SET_CURRENT_JEDI", payload : newJedi});
+
+            assertStrictEquals(result, newJedi);
+        },
+        ["updates the job"]() {
+            const action = {type : "SET_JOB", job : "Nerf herder"};
+            const result = jediReducer(initialState, action);
+
+            eq(result.job, "Nerf herder");
+        },
+        ["can become a Jedi Knight"]() {
+            const action = {type : "FINISH_TRAINING"};
+            const result = jediReducer(initialState, action);
+
+            eq("Jedi Knight", result.job);
+            eq("blue", result.weapons.lightsaber);
+            assert(initialState !== result, "Must return a new object for the state");
+            assert(initialState.weapons !== result.weapons, "Must return a new object for the weapons");
+        },
+        ["can join the Dark Side"]() {
+            const action = {type : "JOIN_DARK_SIDE"};
+            const state = deepFreeze({
+                firstName : "Anakin",
+                lastName : "Skywalker",
+                job : "pod racer",
+                weapons : {
+                    starfighter : "Naboo"
+                }
+            });
+            const result = jediReducer(initialState, action);
+
+            eq("Sith", result.job);
+            eq("red", result.weapons.lightsaber);
+            assert(initialState !== result, "Must return a new object for the state");
+            assert(initialState.weapons !== result.weapons, "Must return a new object for the weapons");
+        },
+    })
+
+
+</script>
 </body>
 </html>

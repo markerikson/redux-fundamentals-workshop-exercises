@@ -3,131 +3,133 @@
     <title>Exercise 02: List Reducer</title>
     <meta charset="utf-8" />
     <script src="../../babel.min.js"></script>
-    <script src="../../testing.js"></script>
 
-
-    <script type="text/babel">
-        "use strict";
-
-        // Exercise 02: List Reducer
-
-        // Task: write a reducer function that manages a list of users
-
-        // This reducer should have an array of user objects as its "state".
-        // A user object will look like:
-        // {username : "merikson", firstName : "Mark", lastName : "Erikson", favoriteColor : "blue"}
-
-        // This reducer should respond to these actions:
-        // - "ADD_USER" : take the new user object from `action.user`, and return a new array with that added at the end
-        // - "REMOVE_USER" : take the username from `action.username`, and return a new array without that user entry
-        // - "UPDATE_USER" : take the username from `action.username` and updated fields from `action.updatedUser`,
-        //                   and return a new array with a new updated object for that one user entry
-        //                   (but keep all other user entries the same).
-        // As before, if the current action is none of those, you should return the existing state
-
-        // NOTE
-        // It's important that your reducer SHOULD NOT modify the `state` array directly!
-        // You also should not directly modify the existing user entries either.
-        // Instead, your reducer should always create a new array and new objects.
-
-
-
-
-        const initialState = [];
-        deepFreeze(initialState);
-
-        function usersReducer(state = initialState, action) {
-            switch(action.type) {
-                case "ADD_USER" : {
-                    // FINAL_START
-                    return state.concat(action.user);
-                    // FINAL_END
-                }
-                case "REMOVE_USER" : {
-                    // FINAL_START
-                    const {username} = action;
-                    return state.filter(userEntry => userEntry.username !== username);
-                    // FINAL_END
-                }
-                case "UPDATE_USER" : {
-                    // FINAL_START
-                    const {username, updatedUser} = action;
-
-                    return state.map(userEntry => {
-                        if(userEntry.username !== username) {
-                            return userEntry;
-                        }
-
-                        return {
-                            ...userEntry,
-                            ...updatedUser
-                        };
-                    });
-                    // FINAL_END
-                }
-                default : {
-                    return state;
-                }
-            }
-        }
-
-        tests({
-            ["adds a new user correctly"]() {
-                const state = deepFreeze([{username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi"}]);
-                const action = {type : "ADD_USER", }
-                const result = usersReducer(state, action);
-
-                assertStrictEquals(result[result.length - 1], action.user);
-                assert(state !== result, "Cannot modify the existing array");
-            },
-            ["remove a user correctly"]() {
-                const state = deepFreeze([
-                    {username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi", favoriteColor : "white"},
-                    {username : "lskywalker", firstName : "Luke", lastName : "Skywalker", favoriteColor : "blue"},
-                    {username : "hsolo", firstName : "Han", lastName : "Solo", favoriteColor : "gray"},
-                ]);
-                const action = {type : "REMOVE_USER", username : "bkenobi"};
-                const result = usersReducer(state, action);
-
-                assert(result.length === state.length - 1, "Should have removed one item");
-                assert(state !== result, "Cannot modify the existing array");
-
-                const matchingUser = result.find(user => user === state[0]);
-                assert(matchingUser === undefined, "Should have removed the right user");
-            },
-            ["updates a user correctly"]() {
-                const state = deepFreeze([
-                    {username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi", favoriteColor : "white"},
-                    {username : "lskywalker", firstName : "Luke", lastName : "Skywalker", favoriteColor : "blue"},
-                    {username : "hsolo", firstName : "Han", lastName : "Solo", favoriteColor : "gray"},
-                ]);
-                const action = {
-                    type : "UPDATE_USER",
-                    username : "hsolo",
-                    updatedUser : {
-                        favoriteColor : "money"
-                    }
-                };
-                const result = usersReducer(state, action);
-
-                assert(result.length === state.length, "Should not have removed any items");
-                assert(result !== state, "Should have created a new array");
-
-                const originalEntry = state.find(entry => entry.username === "hsolo");
-                const newEntry = result.find(entry => entry.username === "hsolo");
-                assert(originalEntry !== newEntry, "Should have created a new object entry");
-
-                eq(newEntry.favoriteColor, "money");
-            },
-        })
-
-
-    </script>
 </head>
 <body>
 
 
 <div id="root"></div>
 <div id="output"></div>
+
+<script src="../../testing.js"></script>
+
+
+<script type="text/javascript">
+    "use strict";
+
+    // Exercise 02: List Reducer
+
+    // Task: write a reducer function that manages a list of users
+
+    // This reducer should have an array of user objects as its "state".
+    // A user object will look like:
+    // {username : "merikson", firstName : "Mark", lastName : "Erikson", favoriteColor : "blue"}
+
+    // This reducer should respond to these actions:
+    // - "ADD_USER" : take the new user object from `action.user`, and return a new array with that added at the end
+    // - "REMOVE_USER" : take the username from `action.username`, and return a new array without that user entry
+    // - "UPDATE_USER" : take the username from `action.username` and updated fields from `action.updatedUser`,
+    //                   and return a new array with a new updated object for that one user entry
+    //                   (but keep all other user entries the same).
+    // As before, if the current action is none of those, you should return the existing state
+
+    // NOTE
+    // It's important that your reducer SHOULD NOT modify the `state` array directly!
+    // You also should not directly modify the existing user entries either.
+    // Instead, your reducer should always create a new array and new objects.
+
+
+
+
+    const initialState = [];
+    deepFreeze(initialState);
+
+    function usersReducer(state = initialState, action) {
+        switch(action.type) {
+            case "ADD_USER" : {
+                // FINAL_START
+                return state.concat(action.user);
+                // FINAL_END
+            }
+            case "REMOVE_USER" : {
+                // FINAL_START
+                const {username} = action;
+                return state.filter(userEntry => userEntry.username !== username);
+                // FINAL_END
+            }
+            case "UPDATE_USER" : {
+                // FINAL_START
+                const {username, updatedUser} = action;
+
+                return state.map(userEntry => {
+                    if(userEntry.username !== username) {
+                        return userEntry;
+                    }
+
+                    return {
+                        ...userEntry,
+                        ...updatedUser
+                    };
+                });
+                // FINAL_END
+            }
+            default : {
+                return state;
+            }
+        }
+    }
+
+    tests({
+        ["adds a new user correctly"]() {
+            const state = deepFreeze([{username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi"}]);
+            const action = {type : "ADD_USER", }
+            const result = usersReducer(state, action);
+
+            assertStrictEquals(result[result.length - 1], action.user);
+            assert(state !== result, "Cannot modify the existing array");
+        },
+        ["remove a user correctly"]() {
+            const state = deepFreeze([
+                {username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi", favoriteColor : "white"},
+                {username : "lskywalker", firstName : "Luke", lastName : "Skywalker", favoriteColor : "blue"},
+                {username : "hsolo", firstName : "Han", lastName : "Solo", favoriteColor : "gray"},
+            ]);
+            const action = {type : "REMOVE_USER", username : "bkenobi"};
+            const result = usersReducer(state, action);
+
+            assert(result.length === state.length - 1, "Should have removed one item");
+            assert(state !== result, "Cannot modify the existing array");
+
+            const matchingUser = result.find(user => user === state[0]);
+            assert(matchingUser === undefined, "Should have removed the right user");
+        },
+        ["updates a user correctly"]() {
+            const state = deepFreeze([
+                {username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi", favoriteColor : "white"},
+                {username : "lskywalker", firstName : "Luke", lastName : "Skywalker", favoriteColor : "blue"},
+                {username : "hsolo", firstName : "Han", lastName : "Solo", favoriteColor : "gray"},
+            ]);
+            const action = {
+                type : "UPDATE_USER",
+                username : "hsolo",
+                updatedUser : {
+                    favoriteColor : "money"
+                }
+            };
+            const result = usersReducer(state, action);
+
+            assert(result.length === state.length, "Should not have removed any items");
+            assert(result !== state, "Should have created a new array");
+
+            const originalEntry = state.find(entry => entry.username === "hsolo");
+            const newEntry = result.find(entry => entry.username === "hsolo");
+            assert(originalEntry !== newEntry, "Should have created a new object entry");
+
+            eq(newEntry.favoriteColor, "money");
+        },
+    })
+
+
+</script>
 </body>
 </html>

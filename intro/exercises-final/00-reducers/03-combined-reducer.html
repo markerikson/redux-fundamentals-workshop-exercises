@@ -3,94 +3,96 @@
     <title>Exercise 03: Combined Reducers</title>
     <meta charset="utf-8" />
     <script src="../../babel.min.js"></script>
-    <script src="../../testing.js"></script>
 
-
-    <script type="text/babel">
-        "use strict";
-
-        // Task: write a reducer function that calls some smaller reducer functions to manage different "slices" of state
-
-        // Write a "root" reducer function whose state will be an object that looks like:
-        // {users : [], currentUser : "merikson" }
-
-        // This reducer should use the provided `usersReducer` to update the `state.users` slice, and the provided
-        // `currentUserReducer` to update the `state.currentUser` slice.
-        // It should then combine both "slices" together into a new state object.
-
-        function currentUserReducer(state, action) {
-            switch(action.type) {
-                case "SET_CURRENT_USER" : return action.username;
-                default : return state;
-            }
-        }
-
-
-        function usersReducer(state, action) {
-            switch(action.type) {
-                case "ADD_USER" : {
-                    return state.concat(action.user);
-                }
-                case "REMOVE_USER" : {
-                    const {username} = action;
-                    return state.filter(userEntry => userEntry.username !== username);
-                }
-                default : {
-                    return state;
-                }
-            }
-        }
-
-        const rootReducerInitialState = {
-            users : [],
-            currentUser : null
-        };
-        deepFreeze(rootReducerInitialState);
-
-
-        function rootReducer(state = rootReducerInitialState, action) {
-            return {
-                users : usersReducer(state.users, action),
-                currentUser : currentUserReducer(state.currentUser, action)
-            };
-        }
-
-
-
-        tests({
-            ["uses the reducers to produce initial state"]() {
-                const result = rootReducer(undefined, {type : "DUMMY_ACTION"});
-
-                assertStrictEquals(result.users, rootReducerInitialState.users);
-                assertStrictEquals(result.currentUser, rootReducerInitialState.currentUser);
-            },
-            ["sets the current user correctly"]() {
-                const action = {type : "SET_CURRENT_USER", username : "bkenobi"};
-                const result = rootReducer(undefined, action);
-
-                assertStrictEquals(result.currentUser, action.username);
-                assert(result !== rootReducerInitialState, "Must create a new state object");
-            },
-            ["adds a user correctly"]() {
-                const action = {
-                    type : "ADD_USER",
-                    user : {username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi"}
-                };
-
-                const result = rootReducer(undefined, action);
-
-                assert(result.users.length === state.users.length + 1, "Should have added one item");
-                assert(result !== rootReducerInitialState, "Must create a new state object");
-            },
-        })
-
-
-    </script>
 </head>
 <body>
 
 
 <div id="root"></div>
 <div id="output"></div>
+
+<script src="../../testing.js"></script>
+
+
+<script type="text/javascript">
+    "use strict";
+
+    // Task: write a reducer function that calls some smaller reducer functions to manage different "slices" of state
+
+    // Write a "root" reducer function whose state will be an object that looks like:
+    // {users : [], currentUser : "merikson" }
+
+    // This reducer should use the provided `usersReducer` to update the `state.users` slice, and the provided
+    // `currentUserReducer` to update the `state.currentUser` slice.
+    // It should then combine both "slices" together into a new state object.
+
+    function currentUserReducer(state, action) {
+        switch(action.type) {
+            case "SET_CURRENT_USER" : return action.username;
+            default : return state;
+        }
+    }
+
+
+    function usersReducer(state, action) {
+        switch(action.type) {
+            case "ADD_USER" : {
+                return state.concat(action.user);
+            }
+            case "REMOVE_USER" : {
+                const {username} = action;
+                return state.filter(userEntry => userEntry.username !== username);
+            }
+            default : {
+                return state;
+            }
+        }
+    }
+
+    const rootReducerInitialState = {
+        users : [],
+        currentUser : null
+    };
+    deepFreeze(rootReducerInitialState);
+
+
+    function rootReducer(state = rootReducerInitialState, action) {
+        return {
+            users : usersReducer(state.users, action),
+            currentUser : currentUserReducer(state.currentUser, action)
+        };
+    }
+
+
+
+    tests({
+        ["uses the reducers to produce initial state"]() {
+            const result = rootReducer(undefined, {type : "DUMMY_ACTION"});
+
+            assertStrictEquals(result.users, rootReducerInitialState.users);
+            assertStrictEquals(result.currentUser, rootReducerInitialState.currentUser);
+        },
+        ["sets the current user correctly"]() {
+            const action = {type : "SET_CURRENT_USER", username : "bkenobi"};
+            const result = rootReducer(undefined, action);
+
+            assertStrictEquals(result.currentUser, action.username);
+            assert(result !== rootReducerInitialState, "Must create a new state object");
+        },
+        ["adds a user correctly"]() {
+            const action = {
+                type : "ADD_USER",
+                user : {username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi"}
+            };
+
+            const result = rootReducer(undefined, action);
+
+            assert(result.users.length === state.users.length + 1, "Should have added one item");
+            assert(result !== rootReducerInitialState, "Must create a new state object");
+        },
+    })
+
+
+</script>
 </body>
 </html>
