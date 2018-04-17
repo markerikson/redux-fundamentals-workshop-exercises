@@ -7,9 +7,7 @@
 
 
     <script type="text/babel">
-
-        // Exercise 01: Basic Counter Reducer
-
+        "use strict";
         // Task: write a reducer function that does counter operations on a number
 
         // This reducer should have a single number as its "state", and respond to five action types:
@@ -27,19 +25,14 @@
         function counterReducer(state = initialState, action) {
             switch(action.type) {
                 case "INCREMENT" : {
-                    return state + 1;
                 }
                 case "DECREMENT" : {
-                    return state - 1;
                 }
                 case "ADD" : {
-                    return state + action.amount;
                 }
                 case "SUBTRACT" : {
-                    return state - action.amount;
                 }
                 case "SET" : {
-                    return action.value;
                 }
                 default : {
                     // I'll give this one to you - if we don't recognize the action,

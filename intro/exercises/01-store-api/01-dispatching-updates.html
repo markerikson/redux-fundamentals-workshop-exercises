@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Exercise 02: Dispatching and updates</title>
+    <title>Exercise 01: Dispatching and updates</title>
     <meta charset="utf-8" />
     <script src="../../babel.min.js"></script>
     <script src="../../redux.min.js"></script>
@@ -21,8 +21,7 @@
 <div id="output"></div>
 
 <script type="text/babel">
-
-    // Exercise 02: Dispatching and updates
+    "use strict";
 
     // Task: A store has been created, with a simple reducer that stores a current text value.
 
@@ -60,14 +59,11 @@
     setTextButton.addEventListener("click", () => {
         const text = textInput.value;
 
-        store.dispatch({type : "SET_TEXT", text});
+        // TODO Dispatch an action with the new text value
     });
 
+    // TODO Subscribe to the store, and set the text display's innerText with the new text value
 
-    store.subscribe( () => {
-        const state = store.getState();
-        currentTextDisplay.innerText = state.currentText;
-    });
 
     tests({
         ["Should dispatch and update the text when the button is clicked"]() {
