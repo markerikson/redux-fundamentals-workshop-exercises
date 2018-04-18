@@ -7,7 +7,7 @@ import {deletePost} from "./actions";
 import PostsFilter from "./PostsFilter";
 
 
-const mapState = (state) => {
+export const mapState = (state) => {
     const {posts, postsAuthorFilter, authors} = state;
     let postsToShow = posts;
 
