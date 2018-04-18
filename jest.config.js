@@ -1,3 +1,5 @@
+const path = require("path");
+
 const config = require('kcd-scripts/config').jest
 
 config.snapshotSerializers = config.snapshotSerializers || []
@@ -26,5 +28,6 @@ config.testMatch = [
 ]
 config.setupFiles = config.setupFiles || []
 config.setupFiles.push('<rootDir>/other/setup-tests.js')
+config.transform = { '^.+\\.jsx?$': path.resolve("node_modules/kcd-scripts/dist/config/babel-transform")};
 
 module.exports = config
