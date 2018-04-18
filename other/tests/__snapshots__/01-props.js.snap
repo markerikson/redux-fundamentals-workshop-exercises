@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Renders "Hello {props.firstName} {props.lastName}" in a div 1`] = `
-<div>
-  Hello Jill !
-</div>
-`;
