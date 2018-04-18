@@ -7,10 +7,8 @@ delete config.coverageThreshold
 config.testPathIgnorePatterns = [
   ...config.testPathIgnorePatterns,
   '/workshop-templates/',
-  '/exercises/',
 ]
 
-config.collectCoverageFrom = ['src/exercises/**/*.js']
 config.coveragePathIgnorePatterns = [
   ...config.coveragePathIgnorePatterns,
   '/workshop-templates/',
@@ -22,7 +20,10 @@ config.moduleNameMapper = Object.assign({}, config.moduleNameMapper, {
 })
 
 config.roots = ['.']
-config.testMatch = ['<rootDir>/other/tests/**/*.js']
+config.testMatch = [
+    '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',
+    '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}',
+]
 config.setupFiles = config.setupFiles || []
 config.setupFiles.push('<rootDir>/other/setup-tests.js')
 
