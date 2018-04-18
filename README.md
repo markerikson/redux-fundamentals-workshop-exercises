@@ -2,7 +2,7 @@
 
 ## Thank you!
 
-- [Create React App][https://github.com/facebook/create-react-app].
+- [Create React App](https://github.com/facebook/create-react-app).
 - [Kent C Dodds](https://github.com/kentcdodds), whose [kentcdodds/react-workshop](https://github.com/kentcdodds/react-workshop) repo formed the basis for this one
 - [Ryan Florence](https://github.com/ryanflorence), for helping get everything set up.
 
@@ -63,16 +63,6 @@ Run the application using `yarn start`, and browse to `http://localhost:3000`.  
 
 If the Create-React-App dev server is running, the application page _should_ automatically updated with any edits you make to the exercise files.  If that doesn't happen, stop the CRA server and re-run it using `yarn start`.
 
-
-### All set up!
-
-If you didn't get any errors running the setup scripts, you're ready to start the workshop!
-
-If you want to explore a bit, there are a few things you can do:
-
-1. go ahead and open `intro/exercises-final/01-js.html` in a browser (don't peak at the solution!). It should say `Hello World`. Go ahead and open the others if you like.
-2. Then you can run `yarn run storybook` and open `http://localhost:9009` and poke around the storybook for our exercises :)
-3. Then you could run the app with `yarn start`. This should pop open a window with a stopwatch which we'll be building.
 
 ### Any errors?
 
