@@ -13,5 +13,4 @@ export function fetchAmount() {
         const errorMessage = _.sample(errors);
         return Promise.reject(errorMessage);
     }
-
 }
