@@ -15,7 +15,7 @@ function counterReducer(state = 0, action) {
 function incrementsSeenReducer(state = 0, action) {
     switch(action.type) {
         case "INCREMENTS_SEEN" : {
-            return state + 1;
+            return action.count;
         }
         default : return state;
     }

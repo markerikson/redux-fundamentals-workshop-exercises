@@ -29,7 +29,7 @@ export class NewPostForm extends Component {
         // TODO using the `addNewPost()` action creator.  Afterwards, clear the post title field by
         // TODO setting it to an empty string.
 
-        // TODO Bonus: only dispatch if there's the selected author  isn't null, and
+        // TODO Bonus: only dispatch if the selected author isn't null, and
         // TODO the current post title isn't an empty string
 
     }
