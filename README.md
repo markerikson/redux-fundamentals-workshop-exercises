@@ -67,7 +67,7 @@ If the Create-React-App dev server is running, the application page _should_ aut
 ### Any errors?
 
 If you see any errors, read the output and try to follow any instructions. If that doesn't work, feel free to
-[file an issue][https://github.com/markerikson/redux-fundamentals-workshop-exercises/issues/new] to ask for help and I'll help if I can. Good luck!
+[file an issue](https://github.com/markerikson/redux-fundamentals-workshop-exercises/issues/new) to ask for help and I'll help if I can. Good luck!
 
 
 ## LICENSE
