@@ -14,8 +14,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1",
-    "webpack": "^3.6.0"
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "axios": "^0.16.2",
@@ -57,5 +56,18 @@
     "setup": "node ./scripts/verify && node ./scripts/install && npm run validate -s",
     "format": "kcd-scripts format \"**/*.js\"",
     "validate": "cross-env TEST_DIR=exercises-final kcd-scripts validate"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
   }
 }
