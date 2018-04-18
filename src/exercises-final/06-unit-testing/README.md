@@ -1,16 +1,19 @@
-# Exercise 03: React-Redux
+# Exercise 06: Unit Testing
 
-This is the same app as the UI Integration exercise.  The state tree stores a list of blog posts
-and a list of authors.  Each post entry has an author ID associated.
+We've updated the tiny blogging app from exercise 03 and added the ability to filter the list of posts
+based on a selected author.  Now, we need some unit tests for the code.
 
-There's two main components: `<PostsList>` and `<NewPostForm>`.  Both of them need access to the Redux store.  The
-`<PostsList>` needs to display a list of posts with the right author details, and the `<NewPostForm>` needs to let
-the application user select a post author and dispatch an action containing the new post title and the author ID.
+The main pieces we're looking to test are the reducer functions and the new `<PostsFilter>` component.  There's empty
+tests already set up in `rootReducer.spec.js` and `PostsList.spec.js`.  Right now, the tests all have placeholders
+and are failing.  Fill them out appropriately based on the descriptions, and make them pass.
 
-However, last time we imported the store directly.  This time, you should use the React-Redux `connect()` function to
-wrap each component so that it gets the data it needs as props.  You'll need to write `mapState()` functions that
-extract the data, and write a `mapDispatch()` function or use the "object shorthand" for binding action creators so that
-`<NewPostsForm>` can dispatch an action with the new post details.
+To run these tests, run `yarn test` at a command prompt.  The Jest testing environment will start up.  By default,
+it runs _all_ tests, both in the `exercises` and `exercises-final` folder.  You can filter it to only run the exercise
+tests by pressing the `'p'` key, and typing in `exercises/06` as the filtering text.
 
-You also need to import and use `<Provider>` in `Example.jsx` so that all the connected components in the component
-tree have access to the Redux store automatically.
+The reducer tests and the test for the `mapState` function should be easy to write, and don't require any special
+handling.  To test the `<PostsList>` component, you'll need to use the Enzyme library ( http://airbnb.io/enzyme/ ),
+which is already configured and set up.
+
+You can use the `shallow(<SomeComponent />)` and `mount(<SomeComponent />)` functions to fake-render the React component,
+then use the "wrapper" object that's returned to inspect the contents of the component.
