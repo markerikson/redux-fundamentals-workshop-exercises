@@ -82,7 +82,8 @@
     tests({
         ["adds a new user correctly"]() {
             const state = deepFreeze([{username : "bkenobi", firstName : "Obi-Wan", lastName : "Kenobi"}]);
-            const action = {type : "ADD_USER", }
+            const action = {type : "ADD_USER", user : {username : "lskywalker", firstName : "Luke"}}
+
             const result = usersReducer(state, action);
 
             assertStrictEquals(result[result.length - 1], action.user);
