@@ -15,7 +15,7 @@ Before attending the workshop, please make sure you have followed these instruct
 You will need:
 
 * [Git](http://git-scm.com/downloads)
-* [node](https://nodejs.org/)
+* [node.js](https://nodejs.org/) (>= 8.4)
 * [yarn](https://yarnpkg.com/en/docs/install)
 
 Please install them if you don't have them already.
