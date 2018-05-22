@@ -25,15 +25,10 @@
 <script type="text/javascript">
     "use strict";
 
-    // Task: A store has been created, with a simple reducer that stores a current text value.
+    // Task: fill in the button click handler so that it dispatches the "SET_TEXT" action when
+    //       clicked, and subscribe to the store so that the "currentTextDisplay" span shows the
+    //       latest value.
 
-    // We've got three reducer functions already written: usersReducer, commentsReducer, and currentUserReducer.
-    // Use combineReducers to create a variable called `rootReducer` that combines them together.
-    // The final state from the root reducer should look like:
-    // {users : [], comments : {}, currentUser : null}
-
-    // Once you've got the root reducer created, call `createStore` and create a variable called `store`, passing
-    // in the root reducer and the `storeInitialState` value.
 
     // Redux is available as a global variable, so we can get combineReducers and createStore from it:
 
@@ -80,7 +75,7 @@
             textInput.value = originalText;
 
             const state = store.getState();
-            eq(state.currentText, newText);
+            eq("More test text", displayText);
 
         },
         ["Should set the display text from the updated state"]() {

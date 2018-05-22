@@ -7,11 +7,19 @@ import Counter from "./Counter";
 
 import configureStore from "./store";
 
+// FINAL_START
 import {loadInitialData} from "./actions";
+// FINAL_END
 
 const store = configureStore();
 
+// WORKSHOP_START
+// TODO We need to load the initial data.  Write one or more thunks in actions.js that
+// TODO fetch the posts and authors, and dispatch them here to load data on startup.
+// WORKSHOP_END
+// FINAL_START
 store.dispatch(loadInitialData());
+// FINAL_END
 
 
 export default class ReactReduxExample extends Component {
