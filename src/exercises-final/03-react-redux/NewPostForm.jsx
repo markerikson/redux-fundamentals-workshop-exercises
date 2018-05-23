@@ -1,13 +1,7 @@
 import React, {Component} from "react";
 import {addNewPost} from "./actions";
 
-// WORKSHOP_START
-// TODO Import `connect()`, write a `mapState()` function that extracts the
-// TODO data this component needs, and default-export the connected component.
-// TODO Be sure to hook up `addNewPost()` so the component can dispatch the action.
-// WORKSHOP_END
 
-// FINAL_START
 import {connect} from "react-redux";
 
 const mapState = (state) => {
@@ -17,7 +11,6 @@ const mapState = (state) => {
 }
 
 const actions = {addNewPost};
-// FINAL_END
 
 
 
@@ -38,23 +31,13 @@ export class NewPostForm extends Component {
     }
 
     onAddNewPostClicked = () => {
-        // WORKSHOP_START
-        // TODO Dispatch an action with the title and the selected author ID,
-        // TODO using the `addNewPost()` action creator.  Afterwards, clear the post title field by
-        // TODO setting it to an empty string.
 
-        // TODO Bonus: only dispatch if the selected author isn't null, and
-        // TODO the current post title isn't an empty string
-        // WORKSHOP_END
-
-        // FINAL_START
         const {title, selectedAuthor} = this.state;
 
         if(selectedAuthor !== null && title !== "") {
             this.props.addNewPost(selectedAuthor, title);
             this.setState({title : ""});
         }
-        // FINAL_END
     }
 
     render() {
@@ -76,10 +59,5 @@ export class NewPostForm extends Component {
     }
 }
 
-// WORKSHOP_START
-export default NewPostForm;
-// WORKSHOP_END
 
-// FINAL_START
 export default connect(mapState, actions)(NewPostForm);
-// FINAL_END
