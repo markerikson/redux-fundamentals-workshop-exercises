@@ -59,6 +59,8 @@ There's a matching `intro/exercises-final` folder that contains the "correct' ve
 
 The rest of the exercises are in the `src/exercises` folder.  As with the intro exercises, there's a matching `src/exercises-final` folder with the "correct" implementations.
 
+Each exercise has a README.md file that describes the goals of the exercise, and there are `TODO` comments in the source files for each exercise that indicate where you ought to make changes.
+
 Run the application using `yarn start`, and browse to `http://localhost:3000`.  You should see a list of available exercise sets on the left.  If you click on an exercise name, you'll see the "exercise" implementation running in the middle, and the "exercise-final" implementation running on the right.  This will let you compare how your implementation is behaving as it runs.
 
 If the Create-React-App dev server is running, the application page _should_ automatically updated with any edits you make to the exercise files.  If that doesn't happen, stop the CRA server and re-run it using `yarn start`.
