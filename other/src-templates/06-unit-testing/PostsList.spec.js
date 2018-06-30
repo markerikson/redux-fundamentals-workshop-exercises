@@ -20,6 +20,7 @@ describe("PostsList", () => {
 
         test("filters the posts correctly", () => {
             // WORKSHOP_START
+            // TODO Replace this dummy assertion with a meaningful test for mapState
             expect(true).toBe(false);
             // WORKSHOP_END
             // FINAL_START
@@ -37,6 +38,7 @@ describe("PostsList", () => {
     describe("PostsList component", () => {
         test("renders without crashing", () => {
             // WORKSHOP_START
+            // TODO Replace this dummy assertion with a meaningful test for PostsList
             expect(true).toBe(false);
             // WORKSHOP_END
             // FINAL_START
@@ -48,6 +50,7 @@ describe("PostsList", () => {
 
         test("shows the right number of list items", () => {
             // WORKSHOP_START
+            // TODO Replace this dummy assertion with a meaningful test for the contents of PostsList
             expect(true).toBe(false);
             // WORKSHOP_END
             // FINAL_START

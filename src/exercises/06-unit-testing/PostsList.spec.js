@@ -19,6 +19,7 @@ describe("PostsList", () => {
     describe("mapState", () => {
 
         test("filters the posts correctly", () => {
+            // TODO Replace this dummy assertion with a meaningful test for mapState
             expect(true).toBe(false);
         })
 
@@ -26,10 +27,12 @@ describe("PostsList", () => {
 
     describe("PostsList component", () => {
         test("renders without crashing", () => {
+            // TODO Replace this dummy assertion with a meaningful test for PostsList
             expect(true).toBe(false);
         })
 
         test("shows the right number of list items", () => {
+            // TODO Replace this dummy assertion with a meaningful test for the contents of PostsList
             expect(true).toBe(false);
         });
     });
