@@ -1,19 +1,15 @@
-# Exercise 06: Unit Testing
+# Exercise 07: Real-World Usage
 
-We've updated the tiny blogging app from exercise 03 and added the ability to filter the list of posts
-based on a selected author.  Now, we need some unit tests for the code.
+It's time to see how all the pieces come together.  We've got another variation on the blog post management app, but
+there's several parts that are missing.
 
-The main pieces we're looking to test are the reducer functions and the new `<PostsFilter>` component.  There's empty
-tests already set up in `rootReducer.spec.js` and `PostsList.spec.js`.  Right now, the tests all have placeholders
-and are failing.  Fill them out appropriately based on the descriptions, and make them pass.
 
-To run these tests, run `yarn test` at a command prompt.  The Jest testing environment will start up.  By default,
-it runs _all_ tests, both in the `exercises` and `exercises-final` folder.  You can filter it to only run the exercise
-tests by pressing the `'p'` key, and typing in `exercises/06` as the filtering text.
-
-The reducer tests and the test for the `mapState` function should be easy to write, and don't require any special
-handling.  To test the `<PostsList>` component, you'll need to use the Enzyme library ( http://airbnb.io/enzyme/ ),
-which is already configured and set up.
-
-You can use the `shallow(<SomeComponent />)` and `mount(<SomeComponent />)` functions to fake-render the React component,
-then use the "wrapper" object that's returned to inspect the contents of the component.
+- `actions.js`: turn `loadInitialData()` into a thunk action creator that fetches both post entries and author entries
+   using the functions in `api.js`, and dispatch actions to load them into the store
+- `Example.jsx`: dispatch `loadInitialData()` directly into the store to fetch the data as soon as the app starts
+- `PostsList.jsx`: write a memoized selector using Reselect's `createSelector` function, so that the filtered list of
+   posts is only recalculated when the list or filter value changes
+- `store.js`: The store needs to be configured to use the Redux DevTools Extension on startup, and to use Hot Module
+   Replacement for the root reducer function.
+- There's also a very subtle bug somewhere that's keeping the filtering logic from working right.  Use the Redux
+  DevTools Extension to track down what's happening when you try to filter the posts by author, and fix it.
