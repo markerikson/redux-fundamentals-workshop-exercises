@@ -67,15 +67,12 @@
 
     tests({
         ["Should dispatch and update the text when the button is clicked"]() {
-            const originalText = textInput.value;
             const newText = "Test text";
             textInput.value = newText;
-
             setTextButton.click();
-            textInput.value = originalText;
 
             const state = store.getState();
-            eq("More test text", displayText);
+            eq(newText, state.currentText);
 
         },
         ["Should set the display text from the updated state"]() {
@@ -84,7 +81,7 @@
 
             const displayText = currentTextDisplay.innerText;
 
-            eq("More test text", newText);
+            eq(newText, displayText);
         },
     })
 
