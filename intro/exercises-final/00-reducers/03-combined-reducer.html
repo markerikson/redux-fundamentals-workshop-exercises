@@ -87,7 +87,7 @@
 
             const result = rootReducer(undefined, action);
 
-            assert(result.users.length === state.users.length + 1, "Should have added one item");
+            assert(result.users.length === rootReducerInitialState.users.length + 1, "Should have added one item");
             assert(result !== rootReducerInitialState, "Must create a new state object");
         },
     })
